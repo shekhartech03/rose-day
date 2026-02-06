@@ -16,14 +16,16 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    padding: 15px;
 }
 
 .card {
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(12px);
     border-radius: 24px;
-    padding: 25px;
-    max-width: 400px;
+    padding: 22px;
+    width: 100%;
+    max-width: 420px;
     text-align: center;
     box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     animation: pop 1.3s ease;
@@ -31,6 +33,11 @@ body {
 
 h1 {
     margin: 10px 0;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+p {
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
 }
 
 button {
@@ -52,8 +59,16 @@ button {
 
 .gallery img {
     width: 100%;
+    max-width: 320px;
     border-radius: 16px;
     margin-top: 12px;
+}
+
+#typingText {
+    margin-top: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    min-height: 1.4em;
 }
 
 .rose {
@@ -81,18 +96,35 @@ button {
     <h1>🌹 Happy Rose Day 🌹</h1>
     <p>Dear <b>Deepu</b> ❤️<br>This surprise is only for you.</p>
 
-    <button onclick="openSurprise()">Open Surprise 🎁</button>
+    <button id="surpriseBtn" onclick="openSurprise()">Open Surprise 🎁</button>
 
     <div class="gallery" id="gallery">
-        
-        <img src="pandas.jpg" alt="Rose">
+        <img src="panda.png" alt="Rose Panda">
         <p>🌹 One rose, one smile, endless memories 🌹</p>
+        <div id="typingText"></div>
     </div>
 </div>
 
 <script>
 function openSurprise() {
     document.getElementById("gallery").style.display = "block";
+    document.getElementById("surpriseBtn").style.display = "none";
+    startTyping();
+}
+
+const message = "I love you Deepu my girl ❤️";
+let index = 0;
+
+function startTyping() {
+    const typingEl = document.getElementById("typingText");
+    typingEl.innerHTML = "";
+    index = 0;
+
+    const interval = setInterval(() => {
+        typingEl.innerHTML += message.charAt(index);
+        index++;
+        if (index === message.length) clearInterval(interval);
+    }, 90);
 }
 
 for (let i = 0; i < 25; i++) {
@@ -106,6 +138,4 @@ for (let i = 0; i < 25; i++) {
 </script>
 
 </body>
-
 </html>
-
